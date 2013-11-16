@@ -1,0 +1,1 @@
+{"database":"prod.world","query":"update wp_db.vbuffer_contents\nset\n\tDATE_CONSUMED = sysdate,\n\tCONSUMED_CODE = '537'\nwhere\n\tPACK_ID = 'V00285638D151' and\n\tosa_id = 'UD221545-1C3D\u2019\n","id":"546993","storeDate":"2013-10-22T18:14:10.796Z","queryName":"Segundo layer segundo paso"}

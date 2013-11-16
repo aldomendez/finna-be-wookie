@@ -1,0 +1,1 @@
+{"database":"prod.world","query":"Select * from (\n\tselect * from bond\n\twhere\n\t\tSHOP_FLOW_LOT = '137947690'\n) where rownum < 25\n--Shop_flow_lot es el numero de rastreo del BOAT","id":"19468566","storeDate":"2013-10-22T18:15:11.272Z","queryName":"Segundo layer, numero de rastreo del boat"}

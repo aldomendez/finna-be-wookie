@@ -1,0 +1,1 @@
+{"database":"prod.world","query":"Select * from (\n\tselect * from pkg_bond_comp where sfcnumber ='134114510'\n) where rownum < 25\n","id":"4960602","storeDate":"2013-10-22T18:17:04.292Z","queryName":"Segundo layer, datos de los materiales"}

@@ -1,0 +1,1 @@
+{"database":"prod.world","query":"select * from(\n\tselect * from wp_db.vbuffer_contents where pack_id = 'V00285638D151' order by position\n) where rownum < 100\n","id":"11957388","storeDate":"2013-10-22T18:15:54.163Z","queryName":"Segundo layer numero de rastreo de las osas"}

@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Querys de prueba para las aplicaciones de 1ro y 2do layer</title>
+  <meta name="description" content="Aqui solamente pondre la informacion que necesito para hacer los querys en cuakquier lugar" />
+</head>
+
+<body>
+<textarea theme="readable" style="display:none;">
+### query primer layer
+
+```sql
+insert all
+	into ilm.pkg_bond (SFCNUMBER,CODE,ENTRY_DATE,SHOP_LOT,OPERATOR,BONDER_ID) 
+		values ('134009661','1655LO',sysdate,'137914566','20464','CYBONDER')
+	into ilm.pkg_bond_comp (SFCNUMBER, COMP_NAME, LOT_ID, SEQ) 
+		values ('134009661','PGK_ID_LAYER1','482059','10')
+	into ilm.pkg_bond_comp (SFCNUMBER, COMP_NAME, LOT_ID, SEQ) 
+		values ('134009661','PGK_ID_LAYER1_SN','133922047','20')
+	into ilm.pkg_bond_comp (SFCNUMBER, COMP_NAME, LOT_ID, SEQ) 
+		values ('134009661','TEC_LOT_LAYER1','C0822FW','30')
+	into ilm.pkg_bond_comp (SFCNUMBER, COMP_NAME, LOT_ID, SEQ) 
+		values ('134009661','PACKAGE_LOT_LAYER1','0665','40')
+select * from dual
+```
+
+### Query segundo layer
+
+```sql
+insert into 
+	ilm.bond(
+		PACKAGE,
+		CODE,
+		OSA_PACK_ID,
+		OSA_POSITION,
+		LASER,
+		CPW_LOT,
+		TEC_LOT,
+		TEST_DATE,
+		SHOP_FLOW_LOT,
+		OPERATOR,
+		TML,
+		BARCODE,
+		PKG_LOT
+	)
+	values (
+		'134009661',
+		'1655LO',
+		'-',
+		'-1',
+		'134009661',
+		'482059',
+		'C0822FW',
+		sysdate,
+		'137914566',
+		'20464',
+		'carrier 137914566',
+		'Y',
+		'0665'
+	)
+```
+</textarea>
+<script src="../jslib/strapdown/strapdown.js"></script>
+</body>
+</html>

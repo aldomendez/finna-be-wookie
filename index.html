@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Query toolkit</title>
+  <link rel="stylesheet" type="text/css" href="../jsLib/bootstrap/css/bootstrap.min.css">
+  <link rel="stylesheet" type="text/css" href="../jsLib/bootstrap/css/bootstrap-responsive.min.css">
+  <link rel="stylesheet" type="text/css" href="../jsLib/nprogress/nprogress.css">
+  <style type='text/css'>
+    h3#queryName{
+      margin-top: 0px;
+      margin-bottom: 3px;
+      margin-left: 0px;
+    }
+    textarea{
+      height:104px;
+      
+      /* The following three rules make a difference in the script */
+      overflow:hidden;
+      line-height: 13px;
+      font-size: 13px;
+      
+      
+      /* border:1px solid #999; */
+      padding:10px;
+      font-family: monospace;
+      }
+  </style>
+</head>
+<body>
+<div class="navbar">
+  <div class="navbar-inner">
+    <div class="container">
+      <div class="brand">CyOptics <small>Query Toolkit</small></div>
+      <ul class="nav">
+        <li class="divider-vertical"></li>
+        <li><a href="#/new" id="new">New</a></li>
+        <li><a href="#/save" id="save">Save</a></li>
+        <li><a href="#/update" id="update">Update</a></li>
+        <li><a href="#/delete" id="delete">Delete</a></li>
+        <li><a href="#/open" id="-open">Open</a></li>
+      </ul>
+      <ul class="nav pull-right">
+        <li><a id="timer"></a></li>
+      </ul>
+    </div><!-- container -->
+  </div><!-- nav-inner -->
+</div><!-- navbar -->
+<div class="container">
+    <row class="span12">
+
+      <div class="row alert-box">
+        <div class="alert">
+        <button type="button" class="close" data-dismiss="alert">&times;</button>
+        <strong>Warning!</strong> Best check yo self, you're not looking too good.
+      </div>
+      <h3 id="queryName" contenteditable="true" class="span9">[Query Name]</h3>
+      <form id="query">
+        <div class="row">
+          <div class="span9">
+            <textarea id="behaveArea" class="span9"></textarea>
+          </div>
+          <div class="span3">
+            <button type="submit" class="btn">Ejecutar</button>
+            <label class="radio">
+              <input type="radio" name="dbName" id="optionsRadios1" value="MxOptix">MxOptix
+            </label>
+            <label class="radio">
+              <input type="radio" name="dbName" id="optionsRadios1" value="SAP">SAP
+            </label>
+            <label class="radio">
+              <input type="radio" name="dbName" id="optionsRadios1" value="MxApps">MxApps
+            </label>
+            <label class="radio">
+              <input type="radio" name="dbName" id="optionsRadios1" value="prod.world">Prod.World
+            </label> 
+          </div>
+        </div>
+      </form>
+    </row>
+  </div>
+<!-- Cuadro Modal_________________________________________________________________________________ -->
+<div class="modal hide fade" id="querySelectorModal">
+  <div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+    <h3>Seleccion de Query's</h3>
+  </div>
+  <div class="modal-body" id="querySelectorModalContent">
+    
+  </div>
+<!-- 
+  <div class="modal-footer">
+    <a href="#" class="btn">Close</a>
+    <a href="#" class="btn btn-primary">Save changes</a>
+  </div>
+   -->
+</div>
+<!-- /Cuadro Modal________________________________________________________________________________ -->
+  <div class="row" id="tabla"></div>
+</div>
+  <script type="text/javascript" src="../jsLib/behave/behave.js"></script>
+  <script type="text/javascript" src="../jsLib/jquery/jquery.js"></script>
+  <script type="text/javascript" src="../jsLib/nprogress/nprogress.js"></script>
+  <script type="text/javascript" src="../jsLib/moment/moment.min.js"></script>
+  <script type="text/javascript" src="../jsLib/bootstrap/js/bootstrap.min.js"></script>
+  <script type="text/javascript" src="../jsLib/sammy/lib/min/sammy-0.7.2.min.js"></script>
+  <script type="text/javascript">
+  
+    $( document ).ready( function () {
+      // check for notifications support
+      // you can omit the 'window' keyword
+      if (window.webkitNotifications) {
+        // Code to Enable Notifications
+      }
+      else {
+        // Code to 'Keep' Notifications Off
+      }
+
+
+
+      /*
+       * This hook adds autosizing functionality
+       * to your textarea
+       */
+      BehaveHooks.add(['keydown'], function(data){
+        var numLines = data.lines.total,
+          fontSize = parseInt( getComputedStyle(data.editor.element)['font-size'] ),
+          padding = parseInt( getComputedStyle(data.editor.element)['padding'] ),
+          editorSize = ((((numLines*fontSize)+padding)) + 4);
+        data.editor.element.style.height = (editorSize > 100 ? editorSize : 104) +'px';
+      });
+
+      var editor = new Behave({
+      
+        textarea:     document.getElementById('behaveArea'),
+        replaceTab:   true,
+        softTabs:     false,
+        tabSize:      4,
+        autoOpen:     true,
+        overwrite:    true,
+        autoStrip:    true,
+        autoIndent:   true
+      });
+      // -- Termina la inicializacion del 'textarea'
+
+      // -- Sammy Initialization
+      var sammy = Sammy('#querySelectorModal',function(){
+        
+        this.get('#/query/:id',function () {
+          console.log(this);
+          $('#querySelectorModal').modal('hide');
+          NProgress.start();
+          query = $.getJSON('./saved/' + this.params['id']);
+          query.done(function(d) {
+            // console.log(d);
+            $('input[value="' + d.database + '"]').prop('checked', true);
+            $("#behaveArea").val(d.query);
+            $('#queryName').html(d.queryName);
+            $("#behaveArea").data("queryId",d.originalFileName);
+            NProgress.done();
+          });
+          query.fail(function(d) {
+            console.log("Falle, no carge ningun dato");
+            NProgress.done();
+          });
+        });
+
+        this.get('#/delete',function(){
+          console.log($("#behaveArea").data("queryId"));
+          this.redirect('#/new');
+          var ticket = $.getJSON('./toolbox.php',{'action':'delete','query_id':$("#behaveArea").data("queryId")});
+          ticket.done(function (d) {
+            console.log(d);
+          });
+          ticket.fail(function (d) {
+            console.log(d);
+          });
+        });
+
+        this.get('#/open',function(){
+          state = getJson('getFiles',{});
+          state.done(function (data) {
+            $('#querySelectorModalContent').html(render(data));
+            $('#querySelectorModal').modal('show');
+          })
+        });
+
+        this.get('#/new',function(){
+          $("#behaveArea").removeData();
+          $('input[type=radio]').prop('checked', false);
+          $("#behaveArea").val('');
+          $('#queryName').html("[Query Name]");
+          $('#tabla').html("");
+          this.redirect('#/');
+          // console.log('inicializado');
+        });
+
+        this.get('#/',function(){
+          // console.log('inicializado');
+        });
+
+      });
+      sammy.run('#/');
+      // -- End Sammy Initialization
+
+      // Genera la lista de Querys que estan disponibles en el servidor
+      // Esta lista se inserta en la aplicacion en un cuadro modal.
+      var render = function anonymous(it /**/) { var out='<ul>';var arr1=it;if(arr1){var value,index=-1,l1=arr1.length-1;while(index<l1){value=arr1[index+=1];out+='<li><a href="#/query/'+(value.id)+'">'+(value.name)+'</a></li>';} } out+='</ul>';return out; }
+      var timeHolder = $('#timer');
+
+      function timedUpdate () {
+        updateTime();
+        window.setTimeout(timedUpdate,1000);
+      }
+
+      timedUpdate();
+
+      function updateTime() {
+        var time = "You'll go out " + moment("23:00", "hh:mm").fromNow();
+        timeHolder.html(time);
+      }
+
+      function loadQueryResults (query,database) {
+        return $.post("./toolbox.php",{"data":query,'action':'query','database':database});
+      }
+
+      function post(action,data) {
+        // Agrega la accion a los datos que enviara
+        data['action'] = action;
+        // Hace la llamada y retorna el ticket para que la funcion maneje los estados
+        return $.post("./toolbox.php",data);
+      }
+
+      function getJson(action,data) {
+        // Agrega la accion a los datos que enviara
+        data['action'] = action;
+        // Hace la llamada y retorna el ticket para que la funcion maneje los estados
+        return $.getJSON("./toolbox.php",data);
+      }
+
+      function getDbName () {
+        // Retorna el valor del radio button que esta seleccionado
+        return $('input[name=dbName]:checked', '#query').val();
+      }
+
+      function getQueryName () {
+        var queryName = $('#queryName').html();
+        if (queryName === "" || queryName === "[Query Name]") {
+          throw new Error('No hay nombre del query');
+        };
+        return $('#queryName').html();
+      }
+
+      function getQueryId () {
+        var genId = Math.round(Math.random()*20222222),
+          storedId = $("#behaveArea").data("queryId");
+        if (typeof(storedId) === 'undefined') {
+          $("#behaveArea").data("queryId",genId);
+          queryId = genId;
+        } else {
+          queryId = storedId;
+        }
+        return queryId;
+      }
+
+      function submitQuery (query, dbName) {
+        NProgress.start()
+        var table = loadQueryResults(query,dbName);
+        table.done(function (c) {
+          $("#tabla").html(c);
+          NProgress.done()
+        });
+      }
+
+      $("#query").submit(function(e){
+        e.preventDefault();
+        // Inicializa las variables a utilizar
+        var query = $("#behaveArea").val(),
+          dbName = getDbName(),
+          allOk = true;
+        // Valida los datos principales
+        if (typeof(dbName)==='undefined') {
+          allOk = false;
+          throw new Error('Database not selected. Select a database to continue');
+        };
+        if (allOk) {
+          submitQuery(query,dbName);
+        }
+      });
+
+      $("#save").on('click',function(e){
+        // e.preventDefault();
+        var bArea = $("#behaveArea"),
+          data = bArea.val(),
+          dbName = getDbName(),
+          id = getQueryId(),
+          queryName = getQueryName(),
+          storeDate = (new Date()).toISOString(),
+          state = undefined;
+        NProgress.start();
+          // Estos son todos los datos que voy a enviar a el servidor
+        state = post('save',{
+          'name':queryName,
+          'dbName':dbName,
+          'query':data,
+          'id':id,
+          'storeDate':storeDate,
+          'queryName': queryName
+        });
+        state.done(function (c) {
+          NProgress.done();
+          console.log(c);
+        });
+      });
+
+    });
+
+  </script>
+</body>
+</html>
