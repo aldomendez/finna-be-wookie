@@ -89,20 +89,12 @@
   <script type="text/javascript" src="../jsLib/moment/moment.min.js"></script>
   <script type="text/javascript" src="../jsLib/bootstrap/js/bootstrap.min.js"></script>
   <script type="text/javascript" src="../jsLib/sammy/lib/min/sammy-0.7.2.min.js"></script>
+  <script type="text/javascript" src="cenny.js"></script>
   <script type="text/javascript">
   
     $( document ).ready( function () {
-      // check for notifications support
-      // you can omit the 'window' keyword
-      if (window.webkitNotifications) {
-        // Code to Enable Notifications
-      }
-      else {
-        // Code to 'Keep' Notifications Off
-      }
-
-
-
+      
+      window.cenny = new Cenny({url: 'cenny/cenny.php'});
       /*
        * This hook adds autosizing functionality
        * to your textarea
