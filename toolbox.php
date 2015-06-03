@@ -178,4 +178,3 @@ function getQueryId($file='')
 {
 	$queryData = getQuery($file);
 	echo $queryData['queryName'];
-}
