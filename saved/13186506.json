@@ -1,0 +1,1 @@
+{"database":"MxOptix","query":"select * from carrier_site where serial_num = '149095448'","id":"13186506","storeDate":"2014-07-02T21:26:46.793Z","queryName":"Carrier a partir del numero de serie"}

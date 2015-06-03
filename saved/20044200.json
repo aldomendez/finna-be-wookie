@@ -1,0 +1,1 @@
+{"database":"MxOptix","query":"insert into phase2.carrier_site (CARRIER_SERIAL_NUM, CARRIER_SITE,SERIAL_NUM,STATUS)  values('JPTOSAG2_B20150403C','1','9545-15-G-02-03-C','AVAIL');","id":"20044200","storeDate":"2015-04-18T13:54:17.357Z","queryName":"insertar datos de PLC"}

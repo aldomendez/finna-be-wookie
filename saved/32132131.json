@@ -1,1 +1,0 @@
-{"database":"prod.world","query":"SELECT max(PACKAGE_BOX_ID) AS MAXID FROM ilm.bond_subassy where code ='0010361910'","originalFileName":"1572521","storeDate":"2013-10-02T13:28:23.649Z","queryName":"No se que hace 1"}

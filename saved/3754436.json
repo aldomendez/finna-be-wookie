@@ -1,0 +1,1 @@
+{"database":"MxOptix","query":"select * from apps.xxbi_cyp_onhand_inv_v@osfm\nwhere organization_code = 'F07'\nand job in (\nselect serial_num from carrier_site where carrier_serial_num = '149102818'\n)","id":"3754436","storeDate":"2014-06-30T20:59:05.658Z","queryName":"WIP LR4"}

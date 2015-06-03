@@ -1,0 +1,1 @@
+{"database":"MxOptix","query":"select * from apps.xxbi_cyp_onhand_inv_v@osfm\nwhere organization_code = 'F07'\nand job in (\nselect serial_num from lr4_shim_assembly where carrier_serial_num = '149102818'\n)","id":"19306151","storeDate":"2014-06-29T13:10:54.259Z","queryName":"Material DUPLICADO"}

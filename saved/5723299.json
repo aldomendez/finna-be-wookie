@@ -1,0 +1,1 @@
+{"database":"MxOptix","query":"select * from apps.xxbi_cyp_onhand_inv_v@osfm\nwhere organization_code = 'F07'\nand job in (\nselect serial_num from carrier_site where carrier_serial_num = \n\n'149102818'\n\n)","id":"5723299","storeDate":"2014-07-01T23:55:43.378Z","queryName":"Material completado en OSAS"}

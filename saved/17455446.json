@@ -1,0 +1,1 @@
+{"database":"MxOptix","query":"select step_name, state from lr4_shim_assembly where serial_num in \n  (select serial_num from lr4_shim_assembly where carrier_serial_num = '149099204')","id":"17455446","storeDate":"2014-06-28T18:15:01.062Z","queryName":"Revisar State en lr4_shim_assemby"}

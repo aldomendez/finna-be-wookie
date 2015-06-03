@@ -1,0 +1,1 @@
+{"database":"MxOptix","query":"select * from apps.xxbi_cyp_onhand_inv_v@osfm\nwhere organization_code = 'F07'\nand job LIKE '149090702'","id":"4138479","storeDate":"2014-06-29T12:16:49.901Z","queryName":"-- Material en DONE"}

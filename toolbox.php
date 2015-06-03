@@ -6,8 +6,8 @@ $databases = array(
 	"MxOptix"	=> 'MxOptix',
 	"Prod_Mx"	=> 'Prod',
 	"MxApps"	=> 'MxApps',
-	"prod.world"=> 'Prod_ilm',
-	"SAP"=> 'SAP'
+	"Prod_ilm"=> 'Prod_ilm',
+	"PaOptix"=> 'PaOptix'
 );
 
 if (isset($_POST['action']) && $_POST['action'] !== '') {
@@ -104,7 +104,7 @@ function verify($data, $rule)
 
 function __isset($data)
 {
-
+	// Check if data pass isset
 }
 
 function getFiles()

@@ -1,0 +1,1 @@
+{"database":"MxOptix","query":"SELECT * FROM\n(\nselect  1 A, 32 B from dual union\nselect  2  , 34   from dual\n) \nINNER JOIN\n--FULL JOIN\n--LEFT JOIN\n--RIGHT JOIN\n\n(\nselect 34 C, 'HOLA' D from dual union\nselect 45  , 'MUNDO'  from dual\n)\nON B  = C","id":"816133","storeDate":"2014-08-18T20:34:33.175Z","queryName":"Join Example"}

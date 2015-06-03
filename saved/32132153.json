@@ -1,1 +1,0 @@
-{"database":"MxOptix","query":"update ilm.bond\nset OSA_PACK_ID = 'V00285638D151',\n\tOSA_POSITION = '23',\n\tLASER = 'UD221545-1C3D'\nwhere\n\tpackage= '134114510'\n","id":"11839129","storeDate":"2013-10-22T18:10:22.152Z","queryName":"Segundo Layer Primer paso"}

@@ -1,0 +1,1 @@
+{"database":"Prod_ilm","query":"update ilm.bond\nset code = '1655L0T', cpw_lot = substring(cpw_lot,-6)\nwhere package in ('')","id":"8442517","storeDate":"2014-07-20T21:19:42.266Z","queryName":"Recodificar ilm.bond"}

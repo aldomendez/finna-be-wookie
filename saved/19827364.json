@@ -1,0 +1,1 @@
+{"database":"MxOptix","query":" SELECT carrier_serial_num, serial_num, laser4id, laser3id,laser2id,laser1id ,carrier_site FROM los_Assembly WHERE carrier_Serial_num = '149240916'\n  ORDER BY carrier_site\n","id":"19827364","storeDate":"2014-09-04T16:20:19.426Z","queryName":"[4X25 VISOR DE LASER ]"}

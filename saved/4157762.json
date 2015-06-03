@@ -1,0 +1,1 @@
+{"database":"MxOptix","query":"select carrier_serial_num, pass_fail,step_name,carrier_site from lr4_shim_assembly where serial_num = '159853316';\n\nselect * from lr4_shim_assembly where serial_num = '159919762'\n\n\n","id":"4157762","storeDate":"2015-02-25T05:05:50.988Z","queryName":"Query carriers"}

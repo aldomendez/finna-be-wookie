@@ -1,0 +1,1 @@
+{"database":"MxOptix","query":"select min(carrier_serial_num) from phase2.carrier_site_history where serial_num in ('149211546')\n\nselect carrier_serial_num from phase2.carrier_site where serial_num in ('149211546')","id":"17331810","storeDate":"2014-08-07T12:05:59.907Z","queryName":"Carrier a partir del numero de serie"}

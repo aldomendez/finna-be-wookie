@@ -1,0 +1,1 @@
+{"database":"Prod_Mx","query":"SELECT  wafer_map_number number_, waff_posit\nFROM wp_db.reading_lasers4 WHERE pack_id = 'P839458'\nAND laser NOT IN (\nSELECT laser FROM WP_DB.wpack_contents\n)\nORDER BY waff_posit","id":"19647457","storeDate":"2014-09-17T16:47:10.998Z","queryName":"[laser id 4x25]"}

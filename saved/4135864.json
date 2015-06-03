@@ -1,0 +1,1 @@
+{"database":"MxOptix","query":"SELECT * FROM epoxy_cure WHERE serial_num IN (\n  SELECT serial_num FROM lr4_shim_assembly WHERE carrier_serial_num = '148458904')\n","id":"4135864","storeDate":"2014-02-15T15:24:48.077Z","queryName":"Curados de Epoxy"}

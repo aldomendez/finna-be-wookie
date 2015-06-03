@@ -1,0 +1,1 @@
+{"database":"MxOptix","query":"UPDATE part_info\nSET part_num = '001057016'\nWHERE\nserial_num IN (SELECT serial_num FROM carrier_site WHERE carrier_serial_Num = \n\n'155830542'\n\n)\n","id":"4213924","storeDate":"2015-05-13T11:03:27.220Z","queryName":"Change Tosa part_num"}

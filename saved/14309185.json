@@ -1,0 +1,7 @@
+{
+  "database": "MxOptix",
+  "query": "SELECT * FROM apps.xxbi_cyp_wip_job_inv_v@osfm\nWHERE job IN(\nselect serial_num from carrier_site where carrier_serial_num = '149102832'\n)",
+  "id": "14309185",
+  "storeDate": "2014-06-29T17:54:18.466Z",
+  "queryName": "Material con batch_job"
+}

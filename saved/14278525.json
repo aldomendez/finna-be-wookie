@@ -1,0 +1,1 @@
+{"database":"MxOptix","query":"select code, count(*)\nfrom pic.mas_assembly@mxapps\nwhere ENTRY_DATE >= to_date('2014-11-25 06:30:00','YYYY-MM-DD HH24:MI:SS')\nand ENTRY_DATE < to_date('2014-11-25 15:00:00','YYYY-MM-DD HH24:MI:SS')\nand CODE like '%PIC-10410%'\ngroup by code\n","id":"14278525","storeDate":"2014-11-25T21:47:48.985Z","queryName":"starts-outs planeacion"}

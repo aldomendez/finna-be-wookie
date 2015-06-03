@@ -1,0 +1,1 @@
+{"database":"MxOptix","query":"Select STEP_NAME from lr4_shim_assembly where carrier_serial_num = '148615212' order by step_name","id":"11506164","storeDate":"2014-03-11T03:41:55.764Z","queryName":"Remedicion?"}

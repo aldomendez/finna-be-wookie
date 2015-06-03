@@ -1,1 +1,0 @@
-{"database":"Prod_Mx","query":"select * from dare_pkg.eml10gb_prod where device='134900946'","id":"3851414","storeDate":"2013-12-17T02:46:05.966Z","queryName":"Verificar entradas en Dare"}

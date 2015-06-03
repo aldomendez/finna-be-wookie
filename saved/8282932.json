@@ -1,0 +1,1 @@
+{"database":"MxOptix","query":"select carrier_serial_num, step_name, part_num from lr4_shim_assembly where serial_num ='149229610'","id":"8282932","storeDate":"2014-08-17T16:03:16.373Z","queryName":"Sacar los numeros de parte para un numero de serie"}
