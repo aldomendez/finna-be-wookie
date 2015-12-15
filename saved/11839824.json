@@ -1,0 +1,1 @@
+{"database":"MxApps","query":"select CARRIER_SERIAL_NUM,count(serial_num) from inventario_osa_lr4 where date_added > sysdate -.555\ngroup by carrier_serial_num","id":"11839824","storeDate":"2015-10-12T21:33:12.571Z","queryName":"Inventario de hoy de OSA"}
